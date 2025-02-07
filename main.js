@@ -49,11 +49,12 @@ loader.load(
   (gltf) => {
     rotatingMesh = gltf.scene;
 
-    // Reset rotation
+    // RESET EVERYTHING
     rotatingMesh.rotation.set(0, 0, 0);
 
-    // Rotate it correctly to stand up
-    rotatingMesh.rotateZ(-Math.PI / 2); // This will fix it lying on the side
+    // FORCE THE MODEL TO STAND UP STRAIGHT
+    rotatingMesh.rotateX(-Math.PI / 2);  // Flip from lying down
+    rotatingMesh.rotateZ(Math.PI / 2);   // Adjust the sideways tilt
 
     rotatingMesh.position.set(0, 2, 0);
     rotatingMesh.scale.set(1, 1, 1);
@@ -64,6 +65,7 @@ loader.load(
     console.error('An error occurred while loading the model:', error);
   }
 );
+
 
 
 // Define the spin axis to be the world up (Y) axis.
