@@ -48,10 +48,10 @@ loader.load(
   'MyAsset.glb',
   (gltf) => {
     rotatingMesh = gltf.scene;
-    
-    // Rotate the object to bring it upright.
-    // Adjust the value depending on your model's orientation.
-    rotatingMesh.rotation.x = 0 * Math.PI / 2; // try -Math.PI / 2 if needed
+
+    // Rotate the object so it stands upright.
+    // Blender uses Z as up, so rotate by -90° around the x-axis.
+    rotatingMesh.rotation.x = -Math.PI / 2;
 
     rotatingMesh.position.set(0, 2, 0);
     rotatingMesh.scale.set(1, 1, 1);
@@ -63,14 +63,14 @@ loader.load(
   }
 );
 
-// Define the spin axis for local rotation (adjust if necessary)
-const spinAxis = new THREE.Vector3(0, 0, 1);
+// Define the spin axis to be the world up (Y) axis.
+const spinAxis = new THREE.Vector3(0, 1, 0);
 
 function animate() {
   requestAnimationFrame(animate);
 
   if (rotatingMesh) {
-    // Rotate the asset around its local z axis (or change the axis as needed)
+    // Rotate the asset around the vertical (Y) axis.
     rotatingMesh.rotateOnAxis(spinAxis, 0.01);
   }
 
