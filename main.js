@@ -21,7 +21,7 @@ camera.position.set(4, 5, 11);
 camera.lookAt(0, 0, 0);
 
 // Add a ground plane
-const groundGeometry = new THREE.PlaneGeometry(20, 20, 32, 32);
+const groundGeometry = new THREE.PlaneGeometry(20, 20);
 groundGeometry.rotateX(-Math.PI / 2);
 const groundMaterial = new THREE.MeshStandardMaterial({
   color: 0x555555,
@@ -42,19 +42,17 @@ scene.add(axesHelper);
 // Variable to store the loaded GLTF model
 let rotatingMesh = null;
 
-// Load your Blender asset (exported as glTF/glb)
+// Load the asset and apply the correct rotation
 const loader = new GLTFLoader().setPath('public/');
 loader.load(
   'MyAsset.glb',
   (gltf) => {
     rotatingMesh = gltf.scene;
 
-    // Reset rotation and apply corrective transformations
+    // Rotate the damn thing to make it stand up
     rotatingMesh.rotation.set(0, 0, 0);
-
-    // Fix the rotation to make the object stand upright
-    rotatingMesh.rotateX(-Math.PI / 2); // Correct lying down
-    rotatingMesh.rotateZ(Math.PI); // Adjust to ensure upright position
+    rotatingMesh.rotateX(Math.PI / 2); // Flip from lying down
+    rotatingMesh.rotateY(Math.PI); // Adjust orientation if needed
 
     rotatingMesh.position.set(0, 2, 0);
     rotatingMesh.scale.set(1, 1, 1);
@@ -73,7 +71,6 @@ function animate() {
   requestAnimationFrame(animate);
 
   if (rotatingMesh) {
-    // Rotate the asset around the vertical (Y) axis.
     rotatingMesh.rotateOnAxis(spinAxis, 0.01);
   }
 
