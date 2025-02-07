@@ -49,9 +49,12 @@ loader.load(
   (gltf) => {
     rotatingMesh = gltf.scene;
 
-    // Rotate the object so it stands upright.
-    // Blender uses Z as up, so rotate by -90° around the x-axis.
-    rotatingMesh.rotation.x = -Math.PI / 2;
+    // Reset rotation and apply corrective transformations
+    rotatingMesh.rotation.set(0, 0, 0);
+
+    // Fix the rotation to make the object stand upright
+    rotatingMesh.rotateX(-Math.PI / 2); // Correct lying down
+    rotatingMesh.rotateZ(Math.PI); // Adjust to ensure upright position
 
     rotatingMesh.position.set(0, 2, 0);
     rotatingMesh.scale.set(1, 1, 1);
