@@ -51,7 +51,7 @@ loader.load(
     
     // Rotate the object to bring it upright.
     // Adjust the value depending on your model's orientation.
-    rotatingMesh.rotation.x = Math.PI / 2; // try -Math.PI / 2 if needed
+    rotatingMesh.rotation.x = 0 * Math.PI / 2; // try -Math.PI / 2 if needed
 
     rotatingMesh.position.set(0, 2, 0);
     rotatingMesh.scale.set(1, 1, 1);
