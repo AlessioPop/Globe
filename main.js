@@ -51,8 +51,7 @@ function animate() {
 
   // Optional: rotate the asset
   if (rotatingMesh) {
-    rotatingMesh.rotation.y += 0.01;
-    rotatingMesh.rotation.x += 0.005;
+    rotatingMesh.rotation.z += 0.01;
   }
 
   renderer.render(scene, camera);
