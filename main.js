@@ -37,6 +37,12 @@ let rotatingMesh = null;
 const loader = new GLTFLoader().setPath('public/');
 loader.load('MyAsset.glb', (gltf) => {
   rotatingMesh = gltf.scene;
+
+  // Optional: Adjust the model's orientation if needed.
+  // For example, if the coke can's natural spin axis is not the z axis,
+  // you might need to reorient it:
+  // rotatingMesh.rotation.x = Math.PI / 2;
+
   // Adjust position and scale as needed
   rotatingMesh.position.set(0, 2, 0);
   rotatingMesh.scale.set(1, 1, 1);
@@ -49,9 +55,9 @@ loader.load('MyAsset.glb', (gltf) => {
 function animate() {
   requestAnimationFrame(animate);
 
-  // Optional: rotate the asset
+  // Rotate the asset along its z axis
   if (rotatingMesh) {
-    rotatingMesh.rotation.z += 0.01;
+    rotatingMesh.rotation.z += 0.01; // Increase this value for a faster spin or decrease for a slower one
   }
 
   renderer.render(scene, camera);
