@@ -48,13 +48,12 @@ loader.load(
   'MyAsset.glb',
   (gltf) => {
     rotatingMesh = gltf.scene;
+    
+    // Rotate the object to bring it upright.
+    // Adjust the value depending on your model's orientation.
+    rotatingMesh.rotation.x = Math.PI / 2; // try -Math.PI / 2 if needed
 
-    // Reorient the model if needed:
-    // For example, if your coke can was modeled with its long axis along Blender's Z axis,
-    // rotate it so that it stands upright (with its spin axis along its local z axis).
-    rotatingMesh.rotation.x = -Math.PI / 2;
-
-    rotatingMesh.position.set(1, 0, 0);
+    rotatingMesh.position.set(0, 2, 0);
     rotatingMesh.scale.set(1, 1, 1);
     scene.add(rotatingMesh);
   },
@@ -71,7 +70,7 @@ function animate() {
   requestAnimationFrame(animate);
 
   if (rotatingMesh) {
-    // Rotate the asset around its local z axis
+    // Rotate the asset around its local z axis (or change the axis as needed)
     rotatingMesh.rotateOnAxis(spinAxis, 0.01);
   }
 
