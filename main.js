@@ -65,7 +65,7 @@ loader.load(
 );
 
 // Define the spin axis for local rotation (adjust if necessary)
-const spinAxis = new THREE.Vector3(0, 0, 1);
+const spinAxis = new THREE.Vector3(1, 0, 0);
 
 function animate() {
   requestAnimationFrame(animate);
